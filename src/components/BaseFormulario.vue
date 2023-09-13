@@ -9,7 +9,7 @@
         <input
           type="text"
           class="input"
-          placeholder="Qual tarefa você deseja iniciar?"
+          placeholder="Qual tarefa você deseja iniciar??"
         />
       </div>
       <div class="column">
