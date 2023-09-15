@@ -9,11 +9,12 @@
         <input
           type="text"
           class="input"
-          placeholder="Qual tarefa você deseja iniciar??"
+          placeholder="Qual tarefa você deseja iniciar?"
+          v-model="descricao"
         />
       </div>
       <div class="column">
-        <BaseTemporizador/>
+        <BaseTemporizador @aoTemporizadorFinalizado="finalizarTarefa"/>
       </div>
     </div>
   </div>
@@ -25,12 +26,30 @@ import BaseTemporizador from "./BaseTemporizador.vue";
 
 
 export default defineComponent({
-  name: "BaseFormulario",
+  name: "BaseFormulário",
+  emits: ['aoSalvarTarefa'],
   components: {
     BaseTemporizador
 },
-  
-
- 
+  data () {
+    return {
+      descricao: ''
+    }
+  },
+  methods: {
+    finalizarTarefa (tempoDecorrido: number) : void {
+      this.$emit('aoSalvarTarefa', {
+        duracaoEmSegundos: tempoDecorrido,
+        descricao: this.descricao
+      })
+      this.descricao = ''
+    }
+  }
 });
 </script>
+<style>
+.formulario {
+  color: var(--texto-primario);
+  background-color: var(--bg-primario);
+}
+</style>
